@@ -1,19 +1,24 @@
 import { useState } from "react";
-import "./App.css";
+// import "./App.css";
 import SearchCard from "./components/SearchCard";
+import ResultsCard from "./components/ResultsCard";
 
 const App = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [numberOfResults, setNumberOfResults] = useState(5);
+  const [numberOfResults, setNumberOfResults] = useState(0);
 
   return (
     <div className="App">
       <SearchCard
-        searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        numberOfResults={numberOfResults}
         setNumberOfResults={setNumberOfResults}
       />
+      {searchQuery && numberOfResults ? (
+        <ResultsCard
+          searchQuery={searchQuery}
+          numberOfResults={numberOfResults}
+        />
+      ) : null}
     </div>
   );
 };
